@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
+import { Button } from '_atoms';
 import { useAppDispatch } from '_hooks';
 import { login, logout } from '_store/slices/auth';
 import { Colors } from '_styles';
@@ -65,6 +66,12 @@ const Start = ({ setIsLoading }: StartProps) => {
   return (
     <View style={s.screen}>
       <Text style={{ color: Colors.FULLWHITE }}>Start</Text>
+      <Button
+        label={'Szukaj'}
+        onPress={() => {
+          console.log('clicked');
+        }}
+      />
     </View>
   );
 };
@@ -75,8 +82,7 @@ const s = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.FULLBLACK,
+    backgroundColor: Colors.FULLWHITE,
   },
   lottie: {
     backgroundColor: Colors.FULLBLACK,
