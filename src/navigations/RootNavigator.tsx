@@ -8,9 +8,9 @@ const RootStack = createNativeStackNavigator<RootNavigatorParamsList>();
 
 const RootNavigator = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  //   const authorised = useAppSelector(state => state.auth.authorised);
-  const authorised = true;
-
+  // const authorised = useAppSelector(state => state.auth.authorised);
+  const authorised = false;
+  
   if (isLoading) {
     return <Start setIsLoading={setIsLoading} />;
   }
