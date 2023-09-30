@@ -81,7 +81,10 @@ const Home = ({ navigation }: HomeProps) => {
           />
         </View>
         <View style={s.searchContainer}>
-          <SearchBar placeholder={'Xs'} onSearch={() => console.log('test')} />
+          <SearchBar
+            placeholder={'Szukaj'}
+            onSearch={() => console.log('test')}
+          />
           <View style={s.iconContainer}>
             <Feather name="list" size={24} color="black" />
           </View>

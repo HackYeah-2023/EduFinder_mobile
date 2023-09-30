@@ -1,1 +1,23 @@
-{}
+{
+  "appName": "EduApp",
+  "register": "Zarejestruj się",
+  "login": "Zaloguj się",
+  "logOut": "Wyloguj",
+  "searchAsGuest": "Przeglądaj jako gość",
+  "e-mail": "E-mail",
+  "password": "Hasło",
+  "repeatPassword": "Powtórz hasło",
+  "next": "Dalej",
+  "region": "województwo",
+  "city": "Miasto",
+  "profile": "Kierunek",
+  "extendedSubjects": "Przedmioty rozszerzone",
+  "languages": "Języki",
+  "start": "Zaczynamy!",
+  "forgotMyPassword": "Nie pamiętam hasła",
+  "incorrectData": "Nie poprawny e-mail lub hasło",
+  "search": "Szukaj",
+  "account": "Konto",
+  "pointsCalculator": "Kalkulator\nPunktów",
+  "settings": "Ustawienia"
+}

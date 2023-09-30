@@ -81,7 +81,7 @@ const s = StyleSheet.create({
     borderWidth: 2,
   },
   searchPlaceholder: {
-    fontSize: Typography.FONT_SIZE_14,
+    fontSize: Typography.FONT_SIZE_15,
     paddingRight: 10,
     flexDirection: 'row',
     textAlign: 'left',

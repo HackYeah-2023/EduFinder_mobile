@@ -31,5 +31,6 @@ const s = StyleSheet.create({
   },
   label: {
     fontSize: Typography.FONT_SIZE_20,
+    fontWeight: Typography.FONT_WEIGHT_REGULAR,
   },
 });
