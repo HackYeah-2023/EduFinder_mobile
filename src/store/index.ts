@@ -6,10 +6,12 @@ import {
 import { EduApp } from '_services/index';
 
 import authReducer from './slices/auth';
+import themeReducer from './slices/theme';
 
 const rootReducer = combineReducers({
   [EduApp.reducerPath]: EduApp.reducer,
   auth: authReducer,
+  theme: themeReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

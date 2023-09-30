@@ -19,3 +19,11 @@ export const FONT_SIZE_28 = 28;
 export const FONT_SIZE_36 = 36;
 export const FONT_SIZE_38 = 38;
 export const FONT_SIZE_40 = 40;
+
+// FONT WEIGHT
+export const FONT_WEIGHT_LIGHT = '300' as const;
+export const FONT_WEIGHT_REGULAR = '400' as const;
+export const FONT_WEIGHT_MEDIUM = '500' as const;
+export const FONT_WEIGHT_SEMIBOLD = '600' as const;
+export const FONT_WEIGHT_BOLD = '700' as const;
+export const FONT_WEIGHT_EXTRABOLD = '800' as const;

@@ -1,5 +1,6 @@
 import { AntDesign } from '@expo/vector-icons';
-import { Colors, Typography } from '_styles';
+import { useTheme } from '@react-navigation/native';
+import { Typography } from '_styles';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -22,8 +23,13 @@ const Item = ({
   isLiked,
   onPress,
 }: ItemProps) => {
+  const { colors } = useTheme();
   return (
-    <View style={s.container}>
+    <View
+      style={[
+        s.container,
+        { borderColor: colors.card, backgroundColor: `${colors.card}1A` },
+      ]}>
       <View style={s.leftSide}>
         <Text style={s.schoolName}>{schoolName}</Text>
         <Text style={s.text}>{city + ' ' + street + ' ' + number}</Text>
@@ -31,13 +37,12 @@ const Item = ({
       <View style={s.rightSide}>
         <TouchableOpacity onPress={onPress}>
           {isLiked ? (
-            <AntDesign name="heart" size={30} color={Colors.RED} />
+            <AntDesign name="heart" size={30} color={colors.notification} />
           ) : (
-            <AntDesign name="hearto" size={30} color={Colors.FULLBLACK} />
+            <AntDesign name="hearto" size={30} color={colors.text} />
           )}
         </TouchableOpacity>
-
-        <Text style={s.likes}>{likes}</Text>
+        <Text style={[s.likes, { color: `${colors.text}77` }]}>{likes}</Text>
       </View>
     </View>
   );
@@ -50,7 +55,6 @@ const s = StyleSheet.create({
     height: 130,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: Colors.LIGHTBLUE,
     flexDirection: 'row',
     marginVertical: 5,
     marginHorizontal: 20,
@@ -75,6 +79,5 @@ const s = StyleSheet.create({
   likes: {
     fontSize: Typography.FONT_SIZE_20,
     marginTop: 10,
-    color: `${Colors.FULLBLACK}88`,
   },
 });

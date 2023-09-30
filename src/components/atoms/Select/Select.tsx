@@ -1,3 +1,4 @@
+import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import { PlatformEnum } from '_types';
 import React, { useEffect, useState } from 'react';
@@ -19,11 +20,12 @@ const Select = ({
   error,
   onSubmit,
 }: SelectProps) => {
+  const { colors } = useTheme();
   const [selectValue, setSelectValue] = useState<any>(null);
   const [active, setActive] = useState(false);
 
   const inputStyle: TextStyle = {
-    color: Colors.FULLBLACK,
+    color: colors.text,
     paddingHorizontal: 10,
     fontSize: Typography.FONT_SIZE_14,
     alignSelf: 'stretch',
@@ -43,7 +45,7 @@ const Select = ({
       <View
         style={[
           s.container,
-          { borderColor: active ? Colors.LIGHTBLUE : Colors.FULLBLACK },
+          { borderColor: active ? colors.primary : colors.text },
         ]}>
         <View style={s.selectContainer}>
           <RNPickerSelect
@@ -68,7 +70,7 @@ const Select = ({
               inputIOS: inputStyle,
               inputAndroid: inputStyle,
               placeholder: {
-                color: Colors.FULLBLACK,
+                color: colors.text,
               },
             }}
             useNativeAndroidPickerStyle={false}

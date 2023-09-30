@@ -1,5 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { Colors, Typography } from '_styles';
+import { useTheme } from '@react-navigation/native';
+import { Typography } from '_styles';
 import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
@@ -17,6 +18,7 @@ export interface Props {
 
 const SearchBar = ({ placeholder, onSearch, autoFocus }: Props) => {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const textInput = useRef<TextInput>(null);
 
@@ -36,8 +38,8 @@ const SearchBar = ({ placeholder, onSearch, autoFocus }: Props) => {
         {
           width: width - 120,
           marginHorizontal: 23,
-          borderColor: Colors.FULLBLACK,
-          backgroundColor: Colors.TRANSPARENT,
+          borderColor: colors.border,
+          backgroundColor: colors.background,
         },
       ]}
       onPress={focusTextInput}
@@ -45,8 +47,8 @@ const SearchBar = ({ placeholder, onSearch, autoFocus }: Props) => {
       <TextInput
         numberOfLines={1}
         placeholder={placeholder}
-        style={[s.searchPlaceholder, { color: 'red' }]}
-        placeholderTextColor={'red'}
+        style={[s.searchPlaceholder, { color: colors.text }]}
+        placeholderTextColor={colors.text}
         value={searchQuery}
         autoCapitalize="none"
         onSubmitEditing={search}
@@ -56,7 +58,7 @@ const SearchBar = ({ placeholder, onSearch, autoFocus }: Props) => {
         autoFocus={autoFocus !== undefined}
       />
       <View style={{ marginRight: 5 }}>
-        <FontAwesome name="search" size={25} color={Colors.FULLBLACK} />
+        <FontAwesome name="search" size={25} color={colors.text} />
       </View>
     </TouchableOpacity>
   );
