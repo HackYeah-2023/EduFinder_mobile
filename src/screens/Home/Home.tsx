@@ -3,9 +3,10 @@ import { CompositeNavigationProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Item, SearchBar } from '_atoms';
 import { Wrapper } from '_screens';
+import { useSchoolsFilterQuery } from '_services/schools/schools';
 import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
-import React, { useState } from 'react';
+import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
 export interface HomeProps {
@@ -13,6 +14,7 @@ export interface HomeProps {
     NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes.Home>,
     NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes>
   >;
+  route: AppNavigatorParamsList[AppRoutes.Home];
 }
 
 interface SchoolItem {
@@ -24,45 +26,33 @@ interface SchoolItem {
   isLiked: boolean;
 }
 
-const Home = ({ navigation }: HomeProps) => {
-  const [data, setData] = useState<SchoolItem[]>([]);
+const Home = ({ navigation, route }: HomeProps) => {
   const { colors } = useTheme();
-  const dummyData = [
-    'Dolnośląskie',
-    'Kujawsko-Pomorskie',
-    'Lubelskie',
-    'Lubuskie',
-    'Łódzkie',
-    'Małopolskie',
-    'Mazowieckie',
-    'Opolskie',
-    'Podkarpackie',
-    'Podlaskie',
-    'Pomorskie',
-    'Śląskie',
-    'Świętokrzyskie',
-    'Warmińsko-Mazurskie',
-    'Wielkopolskie',
-    'Zachodniopomorskie',
-  ];
 
-  const schoolData = dummyData.map((region, index) => ({
-    schoolName: `School ${index + 1}`,
-    city: `City ${index + 1}`,
-    street: `Street ${index + 1}`,
-    number: `123${index + 1}`,
-    likes: 2, // Losowa liczba od 0 do 99
-    isLiked: true, // Losowa wartość true lub false
-  }));
+  const { region, city, foreignLanguages, extendedSubject, profile } =
+    //@ts-ignore
+    route?.params;
 
-  //   const handleLikePress = (index: number) => {
-  //     // Create a copy of the data array
-  //     const newData = [...data];
-  //     // Toggle the isLiked property for the item at the given index
-  //     newData[index].isLiked = !newData[index].isLiked;
-  //     // Update the state with the new data
-  //     setData(newData);
-  //   };
+  console.log(
+    'region: ',
+    region,
+    'city: ',
+    city,
+    'foreignLanguages: ',
+    foreignLanguages,
+    'extendedSubject: ',
+    extendedSubject,
+    'profile: ',
+    profile,
+  );
+
+  const { data } = useSchoolsFilterQuery({
+    region,
+    city,
+    languages: foreignLanguages,
+    extendedSubject,
+    profile,
+  });
 
   return (
     <Wrapper>
@@ -90,7 +80,7 @@ const Home = ({ navigation }: HomeProps) => {
           </View>
         </View>
         <FlatList
-          data={schoolData}
+          data={data}
           showsVerticalScrollIndicator={false}
           style={s.flatList}
           renderItem={({ item }) => (

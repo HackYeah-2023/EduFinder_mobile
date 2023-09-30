@@ -3,20 +3,20 @@ import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import React, { useCallback, useState } from 'react';
 import {
-    NativeSyntheticEvent,
-    StyleSheet,
-    Text,
-    TextInput,
-    TextInputFocusEventData,
-    TextInputProps,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  NativeSyntheticEvent,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputFocusEventData,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
 import Animated, {
-    FadeInRight,
-    FadeInUp,
-    FadeOutRight,
+  FadeInRight,
+  FadeInUp,
+  FadeOutRight,
 } from 'react-native-reanimated';
 
 interface InputProps extends TextInputProps {
@@ -70,7 +70,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
     const nonActiveColor = Colors.FULLWHITE;
     const borderColor: ViewStyle = {
       borderColor: error
-        ? Colors.RED
+        ? Colors.BLUE
         : isFocused
         ? activeColor
         : nonActiveColor,
@@ -84,7 +84,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
             borderColor,
             {
               height: multiline ? 250 : 52,
-              backgroundColor: 'red',
+              backgroundColor: 'pink',
             },
           ]}>
           <View

@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAppSelector } from '_hooks';
 import { AppNavigator, AuthNavigator } from '_navigations';
 import { Start } from '_screens';
 import { RootNavigatorParamsList, RootRoutes } from '_types';
@@ -8,9 +9,8 @@ const RootStack = createNativeStackNavigator<RootNavigatorParamsList>();
 
 const RootNavigator = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const authorised = useAppSelector(state => state.auth.authorised);
-  const authorised = false;
-  
+  const authorised = useAppSelector(state => state.auth.authorised);
+
   if (isLoading) {
     return <Start setIsLoading={setIsLoading} />;
   }

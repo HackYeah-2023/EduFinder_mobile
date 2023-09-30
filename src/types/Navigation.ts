@@ -23,7 +23,13 @@ export type RootNavigatorParamsList = {
 };
 
 export type AppNavigatorParamsList = {
-  [AppRoutes.Home]: undefined;
+  [AppRoutes.Home]: {
+    region: string;
+    city: string;
+    foreignLanguages: string;
+    extendedSubject: string;
+    profile: string;
+  };
   [AppRoutes.Settings]: undefined;
   [AppRoutes.SchoolsSearch]: undefined;
 };
