@@ -2,29 +2,30 @@ import { Colors, Typography } from '_styles';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 
-interface ButtonProps {
+interface LoginButtonProps {
   label: string;
   onPress: () => void;
   style?: ViewStyle;
 }
 
-const Button = ({ label, onPress, style }: ButtonProps) => {
+const LoginButton = ({ label, onPress, style }: LoginButtonProps) => {
   return (
     <TouchableOpacity
       style={[s.container, style]}
       onPress={onPress}
-      activeOpacity={0.8}>
-      <Text>{label}</Text>
+      activeOpacity={0.7}>
+      <Text style={s.label}>{label}</Text>
     </TouchableOpacity>
   );
 };
 
-export default Button;
+export default LoginButton;
 
 const s = StyleSheet.create({
   container: {
     height: 61,
-    backgroundColor: Colors.LIGHTBLUE,
+    borderColor: Colors.FULLBLACK,
+    borderWidth: 2,
     borderRadius: 50,
     paddingHorizontal: 10,
     alignItems: 'center',
@@ -32,5 +33,6 @@ const s = StyleSheet.create({
   },
   label: {
     fontSize: Typography.FONT_SIZE_20,
+    opacity: 0.7,
   },
 });

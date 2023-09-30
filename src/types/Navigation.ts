@@ -13,6 +13,7 @@ export enum AppRoutes {
 export enum AuthRoutes {
   Login = 'Login',
   Register = 'Register',
+  LandingPage = 'LandingPage',
 }
 
 export type RootNavigatorParamsList = {
@@ -30,4 +31,5 @@ export type AppNavigatorParamsList = {
 export type AuthNavigatorParamsList = {
   [AuthRoutes.Login]: undefined;
   [AuthRoutes.Register]: undefined;
+  [AuthRoutes.LandingPage]: undefined;
 };
