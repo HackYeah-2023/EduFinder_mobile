@@ -7,7 +7,7 @@ import { Colors } from '_styles';
 import { getToken, getTokenData } from '_utils';
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Animated, StyleSheet, Text, View } from 'react-native';
+import { Alert, Animated, StyleSheet, View } from 'react-native';
 
 interface StartProps {
   setIsLoading: (loading: boolean) => void;
@@ -65,7 +65,6 @@ const Start = ({ setIsLoading }: StartProps) => {
 
   return (
     <View style={s.screen}>
-      <Text style={{ color: Colors.FULLWHITE }}>Start</Text>
       <Button
         label={'Szukaj'}
         onPress={() => {

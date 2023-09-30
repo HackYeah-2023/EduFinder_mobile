@@ -1,15 +1,19 @@
 import { Colors, Typography } from '_styles';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 
 interface ButtonProps {
   label: string;
   onPress: () => void;
+  style?: ViewStyle;
 }
 
-const Button = ({ label, onPress }: ButtonProps) => {
+const Button = ({ label, onPress, style }: ButtonProps) => {
   return (
-    <TouchableOpacity style={s.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[s.container, style]}
+      onPress={onPress}
+      activeOpacity={0.8}>
       <Text>{label}</Text>
     </TouchableOpacity>
   );

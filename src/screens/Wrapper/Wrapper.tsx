@@ -1,6 +1,7 @@
+import { Colors } from '_styles';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 interface WrapperProps {
   children: React.ReactElement[] | React.ReactElement;
@@ -8,7 +9,10 @@ interface WrapperProps {
 
 const Wrapper = ({ children }: WrapperProps) => {
   return (
-    <LinearGradient colors={['#FFFFFF', '#C5DDFF']} style={s.linearGradient}>
+    <LinearGradient
+      colors={[Colors.FULLWHITE, Colors.LIGHTBLUE]}
+      start={[0.5, 0.4]}
+      style={s.linearGradient}>
       {children}
     </LinearGradient>
   );

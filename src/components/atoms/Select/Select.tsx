@@ -8,7 +8,7 @@ interface SelectProps {
   value: any;
   items: Item[];
   placeholder?: Item | object;
-  error: string;
+  error?: string;
   onSubmit: (value: any) => void;
 }
 
