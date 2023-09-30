@@ -94,6 +94,6 @@ const s = StyleSheet.create({
     backgroundColor: Colors.LIGHTBLUE,
     borderRadius: 50,
     flex: 1,
-    top: 250,
+    top: 270,
   },
 });

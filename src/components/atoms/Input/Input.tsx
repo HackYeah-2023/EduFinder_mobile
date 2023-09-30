@@ -3,20 +3,20 @@ import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import React, { useCallback, useState } from 'react';
 import {
-    NativeSyntheticEvent,
-    StyleSheet,
-    Text,
-    TextInput,
-    TextInputFocusEventData,
-    TextInputProps,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  NativeSyntheticEvent,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputFocusEventData,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
 import Animated, {
-    FadeInRight,
-    FadeInUp,
-    FadeOutRight,
+  FadeInRight,
+  FadeInUp,
+  FadeOutRight,
 } from 'react-native-reanimated';
 
 interface InputProps extends TextInputProps {
@@ -67,10 +67,10 @@ const Input = React.forwardRef<TextInput, InputProps>(
     );
 
     const activeColor = Colors.FULLBLACK;
-    const nonActiveColor = Colors.FULLWHITE;
+    const nonActiveColor = Colors.FULLBLACK;
     const borderColor: ViewStyle = {
       borderColor: error
-        ? Colors.RED
+        ? Colors.FULLBLACK
         : isFocused
         ? activeColor
         : nonActiveColor,
@@ -84,7 +84,6 @@ const Input = React.forwardRef<TextInput, InputProps>(
             borderColor,
             {
               height: multiline ? 250 : 52,
-              backgroundColor: 'red',
             },
           ]}>
           <View
@@ -96,28 +95,18 @@ const Input = React.forwardRef<TextInput, InputProps>(
                     alignItems: 'center',
                   },
             ]}>
-            <Text
-              style={[
-                s.label,
-                {
-                  color: 'red',
-                },
-              ]}>
-              {label}
-            </Text>
+            <Text style={[s.label]}>{label}</Text>
 
             <TextInput
               ref={ref}
               style={[
                 s.input,
                 {
-                  color: ' red',
                   textAlign: 'left',
                 },
               ]}
               value={value}
               placeholder={placeholder}
-              placeholderTextColor={'red'}
               secureTextEntry={!isPasswordShown}
               onChangeText={onChangeText}
               onBlur={handleBlur}
