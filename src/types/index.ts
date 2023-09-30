@@ -4,3 +4,4 @@ export type {
   AuthNavigatorParamsList,
   RootNavigatorParamsList,
 } from './Navigation';
+export { PlatformEnum } from './platform';
