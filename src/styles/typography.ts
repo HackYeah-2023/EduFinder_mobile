@@ -1,3 +1,4 @@
+// FONT SIZE
 export const FONT_SIZE_7 = 7;
 export const FONT_SIZE_8 = 8;
 export const FONT_SIZE_9 = 9;
