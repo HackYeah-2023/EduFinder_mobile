@@ -11,10 +11,7 @@ const Wrapper = ({ children }: WrapperProps) => {
   return (
     <LinearGradient
       colors={[Colors.FULLWHITE, Colors.LIGHTBLUE]}
-<<<<<<< HEAD
       start={[0.5, 0.4]}
-=======
->>>>>>> main
       style={s.linearGradient}>
       {children}
     </LinearGradient>

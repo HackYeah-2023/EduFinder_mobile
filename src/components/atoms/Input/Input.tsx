@@ -3,20 +3,20 @@ import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import React, { useCallback, useState } from 'react';
 import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-  ViewStyle,
+    NativeSyntheticEvent,
+    StyleSheet,
+    Text,
+    TextInput,
+    TextInputFocusEventData,
+    TextInputProps,
+    TouchableOpacity,
+    View,
+    ViewStyle,
 } from 'react-native';
 import Animated, {
-  FadeInRight,
-  FadeInUp,
-  FadeOutRight,
+    FadeInRight,
+    FadeInUp,
+    FadeOutRight,
 } from 'react-native-reanimated';
 
 interface InputProps extends TextInputProps {

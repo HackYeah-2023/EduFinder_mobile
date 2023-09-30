@@ -49,7 +49,7 @@ const LandingPage = ({ navigation }: LandingPageProps) => {
                 backgroundColor: Colors.TRANSPARENT,
                 borderColor: Colors.TRANSPARENT,
               }}
-              onPress={() => navigation.navigate(AppRoutes.Home)}
+              onPress={() => navigation.navigate(AppRoutes.SchoolsSearch)}
             />
           </View>
         </View>
