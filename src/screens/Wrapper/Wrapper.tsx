@@ -1,4 +1,4 @@
-import { Colors } from '_styles';
+import { useTheme } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -8,9 +8,10 @@ interface WrapperProps {
 }
 
 const Wrapper = ({ children }: WrapperProps) => {
+  const { colors } = useTheme();
   return (
     <LinearGradient
-      colors={[Colors.FULLWHITE, Colors.LIGHTBLUE]}
+      colors={[colors.background, colors.primary]}
       start={[0.5, 0.4]}
       style={s.linearGradient}>
       {children}

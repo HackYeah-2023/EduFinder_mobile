@@ -1,9 +1,9 @@
 import { Entypo, Feather } from '@expo/vector-icons';
-import { CompositeNavigationProp } from '@react-navigation/native';
+import { CompositeNavigationProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Item, SearchBar } from '_atoms';
 import { Wrapper } from '_screens';
-import { Colors, Typography } from '_styles';
+import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
@@ -26,6 +26,7 @@ interface SchoolItem {
 
 const Home = ({ navigation }: HomeProps) => {
   const [data, setData] = useState<SchoolItem[]>([]);
+  const { colors } = useTheme();
   const dummyData = [
     'Dolnośląskie',
     'Kujawsko-Pomorskie',
@@ -73,14 +74,17 @@ const Home = ({ navigation }: HomeProps) => {
             size={25}
             color="black"
           />
-          <Text style={s.headerText}>EDUAPP</Text>
+          <Text style={[s.headerText, { color: colors.card }]}>EDUAPP</Text>
           <Image
             style={{ width: 105, height: 105 }}
             source={require('_assets/logo.png')}
           />
         </View>
         <View style={s.searchContainer}>
-          <SearchBar placeholder={'Xs'} onSearch={() => console.log('test')} />
+          <SearchBar
+            placeholder={'Szukaj'}
+            onSearch={() => console.log('test')}
+          />
           <View style={s.iconContainer}>
             <Feather name="list" size={24} color="black" />
           </View>
@@ -123,7 +127,6 @@ const s = StyleSheet.create({
   headerText: {
     marginLeft: 50,
     fontSize: Typography.FONT_SIZE_20,
-    color: Colors.LIGHTBLUE,
   },
   searchContainer: {
     flexDirection: 'row',

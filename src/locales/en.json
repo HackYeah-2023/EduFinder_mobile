@@ -1,1 +1,23 @@
-{}
+{
+  "appName": "EduApp",
+  "register": "Register",
+  "login": "Log in",
+  "logOut": "Log out",
+  "browseAsGuest": "Browse as guest",
+  "e-mail": "E-mail",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+  "next": "Next",
+  "region": "Region",
+  "city": "City",
+  "profile": "Profile",
+  "extendedSubjects": "Extended subjects",
+  "languages": "Languages",
+  "start": "Let's start!",
+  "forgotMyPassword": "Forgot my password",
+  "incorrectData": "Incorrect e-mail or password",
+  "search": "Search",
+  "account": "Account",
+  "pointsCalculator": "Points Calculator",
+  "settings": "Settings"
+}
