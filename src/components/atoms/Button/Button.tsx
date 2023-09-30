@@ -23,9 +23,10 @@ export default Button;
 
 const s = StyleSheet.create({
   container: {
-    height: 61,
+    height: 50,
     backgroundColor: Colors.LIGHTBLUE,
     borderRadius: 50,
+    borderWidth: 2,
     paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',

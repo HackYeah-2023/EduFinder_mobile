@@ -1,0 +1,1 @@
+export { passwordRegex } from './passwordRegex';

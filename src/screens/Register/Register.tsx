@@ -2,6 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button, Input } from '_atoms';
+import { passwordRegex } from '_constants';
+import { useAppDispatch } from '_hooks';
 import { Wrapper } from '_screens';
 import { Colors, Typography } from '_styles';
 import { AuthNavigatorParamsList, AuthRoutes } from '_types';
@@ -18,41 +20,50 @@ import {
 } from 'react-native';
 import * as Yup from 'yup';
 
-export interface LoginProps {
+export interface RegisterProps {
   navigation: NativeStackNavigationProp<
     AuthNavigatorParamsList,
-    AuthRoutes.Login
+    AuthRoutes.Register
   >;
-  route: RouteProp<AuthNavigatorParamsList, AuthRoutes.Login>;
+  route: RouteProp<AuthNavigatorParamsList, AuthRoutes.Register>;
 }
 
 interface FormValues {
   email: string;
   password: string;
+  repassword: string;
 }
 
-const Login = ({ navigation, route }: LoginProps) => {
+const Register = ({ navigation, route }: RegisterProps) => {
   const { t } = useTranslation();
 
   const passwordRef = useRef<TextInput>(null);
+  const repasswordRef = useRef<TextInput>(null);
 
-  const loginSchema = Yup.object().shape({
+  const registerSchema = Yup.object().shape({
     email: Yup.string()
       .required(t('Form.required')!)
       .email(t('FormErrors.email')!),
-    password: Yup.string().required(t('Form.required')!),
+    password: Yup.string()
+      .required(t('Register.errors.Password')!)
+      .matches(passwordRegex, t('Register.errors.inValidPassword')!),
+    repassword: Yup.string()
+      .required(t('Register.errors.repassword')!)
+      .oneOf([Yup.ref('password')], t('Register.errors.notIdentical')!),
   });
+  const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
     email: '',
     password: '',
+    repassword: '',
   };
 
   return (
     <Wrapper>
       <View style={s.container}>
         <Formik
-          validationSchema={loginSchema}
+          validationSchema={registerSchema}
           initialValues={initialValues}
           onSubmit={() => {}}>
           {({
@@ -82,11 +93,11 @@ const Login = ({ navigation, route }: LoginProps) => {
                       size={160}
                       color={Colors.LIGHTBLUE}
                     />
-                    <Text style={s.title}>{t('Login.title')}</Text>
+                    <Text style={s.title}>{t('register')}</Text>
                   </View>
                   <View style={s.form}>
                     <Input
-                      label={t('Login.login')}
+                      label={t('login')}
                       value={values.email}
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
@@ -94,7 +105,7 @@ const Login = ({ navigation, route }: LoginProps) => {
                       autoComplete="email"
                       textContentType="emailAddress"
                       keyboardType="email-address"
-                      placeholder={t('Login.loginPlaceholder')!}
+                      placeholder={t('login ')!}
                       returnKeyType="next"
                       autoCapitalize="none"
                       onSubmitEditing={() => {
@@ -102,23 +113,35 @@ const Login = ({ navigation, route }: LoginProps) => {
                       }}
                     />
                     <Input
-                      label={t('Login.password')}
+                      label={t('password')}
                       value={values.password}
                       onChangeText={handleChange('password')}
                       onBlur={handleBlur('password')}
                       error={touched.password ? errors.password : undefined}
                       passwordInput
                       autoCapitalize="none"
-                      placeholder={t('Login.passwordPlaceholder')!}
+                      placeholder={t('password')!}
                       textContentType="password"
                       returnKeyType={'go'}
                       returnKeyLabel="Log in"
                       ref={passwordRef}
                     />
+                    <Input
+                      label={t('Register.labels.repassword')}
+                      value={values.repassword}
+                      onChangeText={handleChange('repassword')}
+                      onBlur={handleBlur('repassword')}
+                      error={touched.repassword ? errors.repassword : undefined}
+                      placeholder={t('repassword')!}
+                      autoCapitalize="none"
+                      textContentType="password"
+                      secureTextEntry={true}
+                      ref={repasswordRef}
+                    />
 
                     <Button
-                      label={t('Login.loginButton')}
-                      style={s.loginButton}
+                      label={t('register')}
+                      style={s.registerButton}
                       onPress={handleSubmit}
                     />
                   </View>
@@ -132,7 +155,7 @@ const Login = ({ navigation, route }: LoginProps) => {
   );
 };
 
-export default Login;
+export default Register;
 
 const s = StyleSheet.create({
   container: {
@@ -163,8 +186,41 @@ const s = StyleSheet.create({
   title: {
     fontSize: Typography.FONT_SIZE_28,
   },
-  loginButton: {
+  formChildren: {
+    marginVertical: 6,
+  },
+  bottomButtonText: {
+    fontSize: Typography.FONT_SIZE_12,
+
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+  },
+  bg: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'flex-end',
+  },
+  registerButton: {
     marginTop: 20,
+  },
+  activityIndicatorContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  socialButtonsContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  forgotPassword: {
+    fontSize: Typography.FONT_SIZE_12,
+    textAlign: 'right',
+    marginRight: 8,
+    textDecorationLine: 'underline',
   },
   back: {
     position: 'absolute',
