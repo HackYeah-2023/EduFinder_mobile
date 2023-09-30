@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { Home } from '_screens';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import React from 'react';
 
@@ -11,7 +12,7 @@ const AppNavigator = () => {
       screenOptions={() => ({
         headerShown: false,
       })}>
-      <></>
+      <StackApp.Screen name={AppRoutes.Home} component={Home} />
     </StackApp.Navigator>
   );
 };
