@@ -79,7 +79,7 @@ const Details = ({ navigation }: DetailsProps) => {
             </View>
           </View>
           <Text style={s.aboutText}>
-            {'Absolwenci tej szkoły mają o 98% \nlepsze wyniki maturalne'}
+            {'Absolwenci tej szkoły mają o 98% lepsze wyniki maturalne'}
           </Text>
 
           <ExtendedSubject
