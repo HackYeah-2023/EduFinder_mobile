@@ -1,5 +1,4 @@
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import React, { useCallback, useState } from 'react';
 import {
@@ -32,6 +31,8 @@ interface InputProps extends TextInputProps {
   disabled?: boolean;
   theme?: string;
   questionMark?: string;
+  calculator?: boolean;
+  isGreen?: boolean;
 }
 
 const Input = React.forwardRef<TextInput, InputProps>(
@@ -49,11 +50,13 @@ const Input = React.forwardRef<TextInput, InputProps>(
       disabled = false,
       theme,
       questionMark,
+      calculator = false,
+      isGreen = false,
       ...rest
     },
     ref,
   ) => {
-    const { colors } = useTheme();
+    // const { colors } = useTheme();
     const [isFocused, setIsFocused] = useState(false);
     const [isPasswordShown, setIsPasswordShown] = useState(!passwordInput);
 
@@ -66,8 +69,8 @@ const Input = React.forwardRef<TextInput, InputProps>(
       [],
     );
 
-    const activeColor = Colors.FULLBLACK;
-    const nonActiveColor = Colors.FULLBLACK;
+    const activeColor = calculator ? Colors.GREEN : Colors.FULLBLACK;
+    const nonActiveColor = calculator ? Colors.GREEN : Colors.FULLBLACK;
     const borderColor: ViewStyle = {
       borderColor: error
         ? Colors.FULLBLACK
@@ -82,7 +85,9 @@ const Input = React.forwardRef<TextInput, InputProps>(
           style={[
             s.container,
             borderColor,
+
             {
+              backgroundColor: isGreen ? Colors.GREEN : Colors.TRANSPARENT,
               height: multiline ? 250 : 52,
             },
           ]}>
@@ -102,7 +107,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
               style={[
                 s.input,
                 {
-                  textAlign: 'left',
+                  textAlign: calculator ? 'center' : 'left',
                 },
               ]}
               value={value}
@@ -152,6 +157,7 @@ const s = StyleSheet.create({
   container: {
     borderWidth: 2,
     marginVertical: 5,
+    flex: 1,
     borderRadius: 50,
   },
   wrapper: {

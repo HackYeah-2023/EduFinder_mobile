@@ -4,11 +4,13 @@ export enum RootRoutes {
   AppNavigation = 'AppNavigation',
 }
 
+
 export enum AppRoutes {
   Home = 'Home',
   Settings = 'Settings',
   SchoolsSearch = 'SchoolsSearch',
   Details = 'Details',
+  Calculator = "Calculator"
 }
 
 export enum AuthRoutes {
@@ -28,6 +30,7 @@ export type AppNavigatorParamsList = {
   [AppRoutes.Settings]: undefined;
   [AppRoutes.SchoolsSearch]: undefined;
   [AppRoutes.Details]: undefined;
+  [AppRoutes.Calculator]: undefined;
 };
 
 export type AuthNavigatorParamsList = {

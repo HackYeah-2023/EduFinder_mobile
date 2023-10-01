@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Details, Home, SchoolsSearch } from '_screens';
+import { Calculator, Details, Home, SchoolsSearch } from '_screens';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import React from 'react';
 
@@ -8,7 +8,7 @@ const StackApp = createStackNavigator<AppNavigatorParamsList>();
 const AppNavigator = () => {
   return (
     <StackApp.Navigator
-      initialRouteName={AppRoutes.Details}
+      initialRouteName={AppRoutes.Calculator}
       screenOptions={() => ({
         headerShown: false,
       })}>
@@ -18,6 +18,7 @@ const AppNavigator = () => {
       />
       <StackApp.Screen name={AppRoutes.Home} component={Home} />
       <StackApp.Screen name={AppRoutes.Details} component={Details} />
+      <StackApp.Screen name={AppRoutes.Calculator} component={Calculator} />
     </StackApp.Navigator>
   );
 };

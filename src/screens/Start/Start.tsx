@@ -57,7 +57,6 @@ const Start = ({ setIsLoading }: StartProps) => {
   }, []);
 
   return (
-
     <Wrapper>
       <View style={s.container}>
         <Animated.View
