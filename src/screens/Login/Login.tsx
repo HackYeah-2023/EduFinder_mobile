@@ -186,12 +186,9 @@ const s = StyleSheet.create({
     top: 50,
   },
   dash: {
-    position: 'absolute',
     height: 4,
     width: Dimensions.get('window').width / 3.5,
     backgroundColor: Colors.LIGHTBLUE,
     borderRadius: 50,
-    flex: 1,
-    top: 270,
   },
 });
