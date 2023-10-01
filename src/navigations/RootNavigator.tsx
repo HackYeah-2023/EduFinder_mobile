@@ -10,6 +10,7 @@ const RootNavigator = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // const authorised = useAppSelector(state => state.auth.authorised);
   const authorised = true;
+  
   if (isLoading) {
     return <Start setIsLoading={setIsLoading} />;
   }

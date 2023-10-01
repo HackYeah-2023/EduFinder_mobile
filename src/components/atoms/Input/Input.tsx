@@ -1,5 +1,4 @@
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '@react-navigation/native';
 import { Colors, Typography } from '_styles';
 import React, { useCallback, useState } from 'react';
 import {
@@ -32,6 +31,8 @@ interface InputProps extends TextInputProps {
   disabled?: boolean;
   theme?: string;
   questionMark?: string;
+  calculator?: boolean;
+  isGreen?: boolean;
 }
 
 const Input = React.forwardRef<TextInput, InputProps>(
@@ -49,11 +50,13 @@ const Input = React.forwardRef<TextInput, InputProps>(
       disabled = false,
       theme,
       questionMark,
+      calculator = false,
+      isGreen = false,
       ...rest
     },
     ref,
   ) => {
-    const { colors } = useTheme();
+    // const { colors } = useTheme();
     const [isFocused, setIsFocused] = useState(false);
     const [isPasswordShown, setIsPasswordShown] = useState(!passwordInput);
 
@@ -66,11 +69,11 @@ const Input = React.forwardRef<TextInput, InputProps>(
       [],
     );
 
-    const activeColor = Colors.FULLBLACK;
-    const nonActiveColor = Colors.FULLWHITE;
+    const activeColor = calculator ? Colors.GREEN : Colors.FULLBLACK;
+    const nonActiveColor = calculator ? Colors.GREEN : Colors.FULLBLACK;
     const borderColor: ViewStyle = {
       borderColor: error
-        ? Colors.BLUE
+        ? Colors.FULLBLACK
         : isFocused
         ? activeColor
         : nonActiveColor,
@@ -82,9 +85,10 @@ const Input = React.forwardRef<TextInput, InputProps>(
           style={[
             s.container,
             borderColor,
+
             {
+              backgroundColor: isGreen ? Colors.GREEN : Colors.TRANSPARENT,
               height: multiline ? 250 : 52,
-              backgroundColor: 'pink',
             },
           ]}>
           <View
@@ -96,28 +100,18 @@ const Input = React.forwardRef<TextInput, InputProps>(
                     alignItems: 'center',
                   },
             ]}>
-            <Text
-              style={[
-                s.label,
-                {
-                  color: 'red',
-                },
-              ]}>
-              {label}
-            </Text>
+            <Text style={[s.label]}>{label}</Text>
 
             <TextInput
               ref={ref}
               style={[
                 s.input,
                 {
-                  color: ' red',
-                  textAlign: 'left',
+                  textAlign: calculator ? 'center' : 'left',
                 },
               ]}
               value={value}
               placeholder={placeholder}
-              placeholderTextColor={'red'}
               secureTextEntry={!isPasswordShown}
               onChangeText={onChangeText}
               onBlur={handleBlur}
@@ -163,6 +157,7 @@ const s = StyleSheet.create({
   container: {
     borderWidth: 2,
     marginVertical: 5,
+    flex: 1,
     borderRadius: 50,
   },
   wrapper: {

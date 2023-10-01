@@ -25,6 +25,7 @@ interface FormValues {
 }
 
 const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
+
   const loginSchema = Yup.object().shape({
     region: Yup.string().required(),
     city: Yup.string().required(),

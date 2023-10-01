@@ -13,6 +13,7 @@ import { Formik } from 'formik';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
@@ -105,11 +106,13 @@ const Login = ({ navigation, route }: LoginProps) => {
                       size={160}
                       color={Colors.LIGHTBLUE}
                     />
-                    <Text style={s.title}>{t('Login.title')}</Text>
+                    <Text style={s.title}>{t('Zaloguj się')}</Text>
+
+                    <View style={s.dash} />
                   </View>
                   <View style={s.form}>
                     <Input
-                      label={t('Login.login')}
+                      label={''}
                       value={values.email}
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
@@ -117,7 +120,7 @@ const Login = ({ navigation, route }: LoginProps) => {
                       autoComplete="email"
                       textContentType="emailAddress"
                       keyboardType="email-address"
-                      placeholder={t('Login.loginPlaceholder')!}
+                      placeholder={t('e-mail')!}
                       returnKeyType="next"
                       autoCapitalize="none"
                       onSubmitEditing={() => {
@@ -125,14 +128,14 @@ const Login = ({ navigation, route }: LoginProps) => {
                       }}
                     />
                     <Input
-                      label={t('Login.password')}
+                      label={''}
                       value={values.password}
                       onChangeText={handleChange('password')}
                       onBlur={handleBlur('password')}
                       error={touched.password ? errors.password : undefined}
                       passwordInput
                       autoCapitalize="none"
-                      placeholder={t('Login.passwordPlaceholder')!}
+                      placeholder={t('Hasło')!}
                       textContentType="password"
                       returnKeyType={'go'}
                       returnKeyLabel="Log in"
@@ -140,7 +143,16 @@ const Login = ({ navigation, route }: LoginProps) => {
                     />
 
                     <Button
-                      label={t('Login.loginButton')}
+                      label={t('Nie pamiętam hasła')}
+                      style={{
+                        backgroundColor: Colors.TRANSPARENT,
+                        borderColor: Colors.TRANSPARENT,
+                      }}
+                      onPress={() => console.log('forgot password')}
+                    />
+
+                    <Button
+                      label={t('Login')}
                       style={s.loginButton}
                       onPress={handleSubmit}
                     />
@@ -162,6 +174,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   form: {
+    marginTop: 90,
     width: '90%',
     alignSelf: 'center',
   },
@@ -188,10 +201,17 @@ const s = StyleSheet.create({
   },
   loginButton: {
     marginTop: 20,
+    fontSize: Typography.FONT_SIZE_20,
   },
   back: {
     position: 'absolute',
     left: 30,
     top: 50,
+  },
+  dash: {
+    height: 4,
+    width: Dimensions.get('window').width / 3.5,
+    backgroundColor: Colors.LIGHTBLUE,
+    borderRadius: 50,
   },
 });

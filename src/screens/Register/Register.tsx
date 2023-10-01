@@ -12,6 +12,7 @@ import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
@@ -111,11 +112,12 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       size={160}
                       color={Colors.LIGHTBLUE}
                     />
-                    <Text style={s.title}>{t('register')}</Text>
+                    <Text style={s.title}>{'Zarejestruj się'}</Text>
+                    <View style={s.dash} />
                   </View>
                   <View style={s.form}>
                     <Input
-                      label={t('login')}
+                      label={t('')}
                       value={values.email}
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
@@ -123,7 +125,7 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       autoComplete="email"
                       textContentType="emailAddress"
                       keyboardType="email-address"
-                      placeholder={t('login ')!}
+                      placeholder={t('E-mail ')!}
                       returnKeyType="next"
                       autoCapitalize="none"
                       onSubmitEditing={() => {
@@ -131,7 +133,7 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       }}
                     />
                     <Input
-                      label={t('password')}
+                      label={t('')}
                       value={values.password}
                       onChangeText={handleChange('password')}
                       onBlur={handleBlur('password')}
@@ -145,7 +147,7 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       ref={passwordRef}
                     />
                     <Input
-                      label={t('Register.labels.repassword')}
+                      label={t('')}
                       value={values.repassword}
                       onChangeText={handleChange('repassword')}
                       onBlur={handleBlur('repassword')}
@@ -180,6 +182,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   form: {
+    marginTop: 90,
     width: '90%',
     alignSelf: 'center',
   },
@@ -244,5 +247,14 @@ const s = StyleSheet.create({
     position: 'absolute',
     left: 30,
     top: 50,
+  },
+  dash: {
+    position: 'absolute',
+    height: 4,
+    width: Dimensions.get('window').width / 3.5,
+    backgroundColor: Colors.LIGHTBLUE,
+    borderRadius: 50,
+    flex: 1,
+    top: 270,
   },
 });
