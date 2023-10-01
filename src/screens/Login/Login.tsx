@@ -2,9 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button, Input } from '_atoms';
+import { useAppDispatch } from '_hooks';
 import { Wrapper } from '_screens';
+import { useLoginMutation } from '_services/auth/auth';
+import { login as loginDispatch } from '_store/slices/auth';
 import { Colors, Typography } from '_styles';
 import { AuthNavigatorParamsList, AuthRoutes } from '_types';
+import { Token, getTokenData, setToken } from '_utils';
 import { Formik } from 'formik';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -34,13 +38,14 @@ interface FormValues {
 
 const Login = ({ navigation, route }: LoginProps) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const [login] = useLoginMutation();
 
   const passwordRef = useRef<TextInput>(null);
 
   const loginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required(t('Form.required')!)
-      .email(t('FormErrors.email')!),
+    email: Yup.string().required(t('Form.required')!),
     password: Yup.string().required(t('Form.required')!),
   });
 
@@ -49,13 +54,31 @@ const Login = ({ navigation, route }: LoginProps) => {
     password: '',
   };
 
+  const loginHandler = async ({ email, password }: FormValues) => {
+    console.log('td=s');
+    const response = await login({
+      email,
+      password,
+    });
+    //@ts-ignore
+    const data = response?.data;
+    const token: Token = {
+      token: data.token,
+    };
+    setToken(token);
+    const loginData = getTokenData(token);
+    if (loginData !== null) {
+      dispatch(loginDispatch(loginData));
+    }
+  };
+
   return (
     <Wrapper>
       <View style={s.container}>
         <Formik
           validationSchema={loginSchema}
           initialValues={initialValues}
-          onSubmit={() => {}}>
+          onSubmit={loginHandler}>
           {({
             values,
             errors,

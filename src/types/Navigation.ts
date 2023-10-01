@@ -7,8 +7,10 @@ export enum RootRoutes {
 
 export enum AppRoutes {
   Home = 'Home',
-  Settings = 'Settings',
   SchoolsSearch = 'SchoolsSearch',
+  Settings = 'Settings',
+  Account = 'Account',
+  Calculator = 'Calculator',
   Details = 'Details',
   Calculator = "Calculator"
 }
@@ -26,9 +28,16 @@ export type RootNavigatorParamsList = {
 };
 
 export type AppNavigatorParamsList = {
-  [AppRoutes.Home]: undefined;
-  [AppRoutes.Settings]: undefined;
+  [AppRoutes.Home]: {
+    region: string;
+    city: string;
+    foreignLanguages: string;
+    extendedSubject: string;
+    profile: string;
+  };
   [AppRoutes.SchoolsSearch]: undefined;
+  [AppRoutes.Settings]: undefined;
+  [AppRoutes.Account]: undefined;
   [AppRoutes.Details]: undefined;
   [AppRoutes.Calculator]: undefined;
 };

@@ -19,5 +19,12 @@
   "search": "Search",
   "account": "Account",
   "pointsCalculator": "Points Calculator",
-  "settings": "Settings"
+  "settings": "Settings",
+  "theme": "Theme",
+  "pl": "Polish",
+  "en": "English",
+  "light": "Light",
+  "dark": "Dark",
+  "logout": "Log out",
+  "liked": "Liked"
 }

@@ -1,79 +1,80 @@
 import { Entypo, Feather } from '@expo/vector-icons';
-import { CompositeNavigationProp, useTheme } from '@react-navigation/native';
+import { RouteProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Item, SearchBar } from '_atoms';
 import { Wrapper } from '_screens';
+import { getAllSchools } from '_services/schools/schools.methods';
 import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
-import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export interface HomeProps {
-  navigation: CompositeNavigationProp<
-    NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes.Home>,
-    NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes>
-  >;
+  navigation: NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes.Home>;
+  route: RouteProp<AppNavigatorParamsList, AppRoutes.Home>;
 }
 
-interface SchoolItem {
-  schoolName: string;
+interface dataInterface {
+  id: number;
+  name: string;
+  region: string;
+  county: string;
+  commune: string;
   city: string;
   street: string;
   number: string;
+  zipCode: string;
+  page: string;
+  type: string;
+  departments: number;
+  mail: string;
+  phone: string;
+  foreign_languages: string;
+  classes: string;
+  extended_subjects: string;
   likes: number;
-  isLiked: boolean;
 }
 
-const Home = ({ navigation }: HomeProps) => {
-  const [data, setData] = useState<SchoolItem[]>([]);
+const Home = ({ navigation, route }: HomeProps) => {
   const { colors } = useTheme();
-  const dummyData = [
-    'Dolnośląskie',
-    'Kujawsko-Pomorskie',
-    'Lubelskie',
-    'Lubuskie',
-    'Łódzkie',
-    'Małopolskie',
-    'Mazowieckie',
-    'Opolskie',
-    'Podkarpackie',
-    'Podlaskie',
-    'Pomorskie',
-    'Śląskie',
-    'Świętokrzyskie',
-    'Warmińsko-Mazurskie',
-    'Wielkopolskie',
-    'Zachodniopomorskie',
-  ];
 
-  const schoolData = dummyData.map((region, index) => ({
-    schoolName: `School ${index + 1}`,
-    city: `City ${index + 1}`,
-    street: `Street ${index + 1}`,
-    number: `123${index + 1}`,
-    likes: 2, // Losowa liczba od 0 do 99
-    isLiked: true, // Losowa wartość true lub false
-  }));
+  const {
+    params: { region, city, foreignLanguages, extendedSubject, profile },
+  } = route;
 
-  //   const handleLikePress = (index: number) => {
-  //     // Create a copy of the data array
-  //     const newData = [...data];
-  //     // Toggle the isLiked property for the item at the given index
-  //     newData[index].isLiked = !newData[index].isLiked;
-  //     // Update the state with the new data
-  //     setData(newData);
-  //   };
+  const data = getAllSchools({
+    name: 'Liceum',
+    region,
+    city,
+    extendedSubject: [extendedSubject],
+    languages: [foreignLanguages],
+    profile: [profile],
+  });
+
+  const newData: dataInterface[] = data.map(item => {
+    const likes = Math.floor(Math.random() * 1000);
+    return { ...item, likes };
+  });
 
   return (
     <Wrapper>
       <View style={s.container}>
         <View style={s.header}>
-          <Entypo
-            style={s.icon}
-            name="dots-three-horizontal"
-            size={25}
-            color="black"
-          />
+          <TouchableOpacity>
+            <Entypo
+              style={s.icon}
+              name="dots-three-horizontal"
+              size={25}
+              color="black"
+            />
+          </TouchableOpacity>
           <Text style={[s.headerText, { color: colors.card }]}>EDUAPP</Text>
           <Image
             style={{ width: 105, height: 105 }}
@@ -90,17 +91,16 @@ const Home = ({ navigation }: HomeProps) => {
           </View>
         </View>
         <FlatList
-          data={schoolData}
+          data={newData}
           showsVerticalScrollIndicator={false}
           style={s.flatList}
           renderItem={({ item }) => (
             <Item
-              schoolName={item.schoolName}
+              schoolName={item.name}
               city={item.city}
               street={item.street}
               number={item.number}
               likes={item.likes}
-              isLiked={item.isLiked}
             />
           )}
         />

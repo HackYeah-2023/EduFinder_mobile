@@ -1,25 +1,25 @@
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { Calculator, Details, Home, SchoolsSearch } from '_screens';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
-import React from 'react';
 
-const StackApp = createStackNavigator<AppNavigatorParamsList>();
+const Drawer = createDrawerNavigator();
 
 const AppNavigator = () => {
   return (
-    <StackApp.Navigator
+    <Drawer.Navigator
       initialRouteName={AppRoutes.Calculator}
       screenOptions={() => ({
         headerShown: false,
       })}>
-      <StackApp.Screen
+      <Drawer.Screen
         name={AppRoutes.SchoolsSearch}
         component={SchoolsSearch}
       />
-      <StackApp.Screen name={AppRoutes.Home} component={Home} />
-      <StackApp.Screen name={AppRoutes.Details} component={Details} />
-      <StackApp.Screen name={AppRoutes.Calculator} component={Calculator} />
-    </StackApp.Navigator>
+      <Drawer.Screen name={AppRoutes.Home} component={Home} />
+      <Drawer.Screen name={AppRoutes.Details} component={Details} />
+      <Drawer.Screen name={AppRoutes.Calculator} component={Calculator} />
+    </Drawer.Navigator>
   );
 };
 

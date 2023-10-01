@@ -3,14 +3,15 @@ import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button, Input } from '_atoms';
 import { passwordRegex } from '_constants';
-import { useAppDispatch } from '_hooks';
 import { Wrapper } from '_screens';
+import { useRegisterMutation } from '_services/auth/auth';
 import { Colors, Typography } from '_styles';
 import { AuthNavigatorParamsList, AuthRoutes } from '_types';
 import { Formik } from 'formik';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -38,6 +39,8 @@ interface FormValues {
 const Register = ({ navigation, route }: RegisterProps) => {
   const { t } = useTranslation();
 
+  const [register, { isLoading, error }] = useRegisterMutation();
+
   const passwordRef = useRef<TextInput>(null);
   const repasswordRef = useRef<TextInput>(null);
 
@@ -52,12 +55,27 @@ const Register = ({ navigation, route }: RegisterProps) => {
       .required(t('Register.errors.repassword')!)
       .oneOf([Yup.ref('password')], t('Register.errors.notIdentical')!),
   });
-  const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
     email: '',
     password: '',
     repassword: '',
+  };
+
+  const registerHandler = async ({ email, password }: FormValues) => {
+    await register({
+      email,
+      password,
+    });
+
+    if (error) {
+      Alert.alert(
+        t('Register.errors.warning'),
+        t('Register.errors.reusedData')!,
+      );
+    }
+
+    navigation.navigate(AuthRoutes.Login);
   };
 
   return (
@@ -66,7 +84,7 @@ const Register = ({ navigation, route }: RegisterProps) => {
         <Formik
           validationSchema={registerSchema}
           initialValues={initialValues}
-          onSubmit={() => {}}>
+          onSubmit={registerHandler}>
           {({
             values,
             errors,
