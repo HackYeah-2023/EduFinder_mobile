@@ -22,7 +22,7 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
     'Przedmioty Rozszerzone',
     'Języki',
   ];
-  const itmes = itemsData.map(item => ({ label: item, value: item }));
+  const items = itemsData.map(item => ({ label: item, value: item }));
 
   return (
     <Wrapper>
