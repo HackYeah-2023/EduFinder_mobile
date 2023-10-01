@@ -7,6 +7,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Appearance } from 'react-native';
 import { Provider } from 'react-redux';
 
+import 'react-native-gesture-handler';
 import i18n from './src/locales/i18n';
 import { setupStore } from './src/store';
 

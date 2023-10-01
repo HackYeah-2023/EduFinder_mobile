@@ -126,7 +126,7 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
 
               <View style={{ paddingHorizontal: 40 }}>
                 <Button
-                  label={'Wyszukaj'}
+                  label={'Zaczynamy!'}
                   style={{
                     marginTop: 30,
                     backgroundColor: Colors.BLUE,
