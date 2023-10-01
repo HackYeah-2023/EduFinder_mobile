@@ -1,69 +1,48 @@
 import { Entypo, Feather } from '@expo/vector-icons';
-import { CompositeNavigationProp, useTheme } from '@react-navigation/native';
+import { RouteProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Item, SearchBar } from '_atoms';
 import { Wrapper } from '_screens';
-import { useSchoolsFilterQuery } from '_services/schools/schools';
 import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export interface HomeProps {
-  navigation: CompositeNavigationProp<
-    NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes.Home>,
-    NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes>
-  >;
-  route: AppNavigatorParamsList[AppRoutes.Home];
-}
-
-interface SchoolItem {
-  schoolName: string;
-  city: string;
-  street: string;
-  number: string;
-  likes: number;
-  isLiked: boolean;
+  navigation: NativeStackNavigationProp<AppNavigatorParamsList, AppRoutes.Home>;
+  route: RouteProp<AppNavigatorParamsList, AppRoutes.Home>;
 }
 
 const Home = ({ navigation, route }: HomeProps) => {
   const { colors } = useTheme();
+  const {
+    params: { region, city, foreignLanguages, extendedSubject, profile },
+  } = route;
 
-  const { region, city, foreignLanguages, extendedSubject, profile } =
-    //@ts-ignore
-    route?.params;
-
-  console.log(
-    'region: ',
-    region,
-    'city: ',
-    city,
-    'foreignLanguages: ',
-    foreignLanguages,
-    'extendedSubject: ',
-    extendedSubject,
-    'profile: ',
-    profile,
-  );
-
-  const { data } = useSchoolsFilterQuery({
-    region,
-    city,
-    languages: foreignLanguages,
-    extendedSubject,
-    profile,
-  });
+  const data = [
+    { label: 'test', value: 'test' },
+    { label: 'test', value: 'test' },
+  ];
 
   return (
     <Wrapper>
       <View style={s.container}>
         <View style={s.header}>
-          <Entypo
-            style={s.icon}
-            name="dots-three-horizontal"
-            size={25}
-            color="black"
-          />
+          <TouchableOpacity>
+            <Entypo
+              style={s.icon}
+              name="dots-three-horizontal"
+              size={25}
+              color="black"
+            />
+          </TouchableOpacity>
           <Text style={[s.headerText, { color: colors.card }]}>EDUAPP</Text>
           <Image
             style={{ width: 105, height: 105 }}

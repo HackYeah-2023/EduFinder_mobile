@@ -19,5 +19,12 @@
   "search": "Szukaj",
   "account": "Konto",
   "pointsCalculator": "Kalkulator\nPunktów",
-  "settings": "Ustawienia"
+  "settings": "Ustawienia",
+  "theme": "Motyw",
+  "pl": "Polski",
+  "en": "Angielski",
+  "dark": "Ciemny",
+  "light": "Jasny",
+  "logout": "Wyloguj",
+  "liked": "Polubione"
 }
