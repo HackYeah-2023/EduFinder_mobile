@@ -19,7 +19,9 @@ const ExtendedSubject = ({
     <View style={s.container}>
       <View style={s.top}>
         <Text style={{ fontSize: Typography.FONT_SIZE_24 }}>{label}</Text>
-        <Text style={{ fontSize: Typography.FONT_SIZE_18 }}>{text}</Text>
+        <Text style={{ fontSize: Typography.FONT_SIZE_18, opacity: 0.5 }}>
+          {text}
+        </Text>
       </View>
       <View>
         <Text
@@ -35,6 +37,7 @@ const ExtendedSubject = ({
             fontSize: Typography.FONT_SIZE_16,
             textAlign: 'center',
             paddingBottom: 15,
+            opacity: 0.5,
           }}>
           {text_info}
         </Text>
