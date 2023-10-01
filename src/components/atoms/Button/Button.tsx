@@ -24,6 +24,7 @@ export default Button;
 const s = StyleSheet.create({
   container: {
     height: 50,
+    flex: 1,
     backgroundColor: Colors.LIGHTBLUE,
     borderRadius: 50,
     borderWidth: 2,

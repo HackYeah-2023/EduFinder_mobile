@@ -152,6 +152,7 @@ const s = StyleSheet.create({
   container: {
     borderWidth: 2,
     marginVertical: 5,
+    flex: 1,
     borderRadius: 50,
   },
   wrapper: {
