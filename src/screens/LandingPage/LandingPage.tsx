@@ -11,7 +11,7 @@ import {
 } from '_types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 
 export interface LandingPageProps {
   navigation: CompositeNavigationProp<
@@ -29,6 +29,15 @@ const LandingPage = ({ navigation }: LandingPageProps) => {
         <View style={{ flex: 1 }}>
           <View style={s.logoImageContainer}>
             <Image source={require('_assets/logo.png')} style={s.logoImage} />
+            <Text
+              style={{
+                fontSize: 28,
+                color: Colors.DARKBLUE,
+                position: 'absolute',
+                top: 230,
+              }}>
+              EduFinder
+            </Text>
             <View style={s.dash} />
           </View>
           <View style={s.form}>
