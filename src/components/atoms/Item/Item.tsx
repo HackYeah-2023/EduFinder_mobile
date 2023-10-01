@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import { Typography } from '_styles';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface ItemProps {
@@ -10,20 +10,13 @@ interface ItemProps {
   street: string;
   number: string;
   likes: number;
-  isLiked: boolean;
-  onPress?: () => void;
 }
 
-const Item = ({
-  schoolName,
-  city,
-  street,
-  number,
-  likes,
-  isLiked,
-  onPress,
-}: ItemProps) => {
+const Item = ({ schoolName, city, street, number, likes }: ItemProps) => {
   const { colors } = useTheme();
+  const [liked, setLiked] = useState<boolean>(
+    Math.floor(Math.random() * 10) % 2 === 0,
+  );
   return (
     <View
       style={[
@@ -31,12 +24,16 @@ const Item = ({
         { borderColor: colors.card, backgroundColor: `${colors.card}1A` },
       ]}>
       <View style={s.leftSide}>
-        <Text style={s.schoolName}>{schoolName}</Text>
-        <Text style={s.text}>{city + ' ' + street + ' ' + number}</Text>
+        <Text numberOfLines={2} style={s.schoolName}>
+          {schoolName}
+        </Text>
+        <Text numberOfLines={2} style={s.text}>
+          {city + ' ' + street + ' ' + number}
+        </Text>
       </View>
       <View style={s.rightSide}>
-        <TouchableOpacity onPress={onPress}>
-          {isLiked ? (
+        <TouchableOpacity onPress={() => setLiked(!liked)}>
+          {liked ? (
             <AntDesign name="heart" size={30} color={colors.notification} />
           ) : (
             <AntDesign name="hearto" size={30} color={colors.text} />
@@ -64,12 +61,12 @@ const s = StyleSheet.create({
   },
   schoolName: {
     marginLeft: 20,
-    fontSize: Typography.FONT_SIZE_28,
-    marginVertical: 20,
+    fontSize: Typography.FONT_SIZE_20,
+    marginVertical: 10,
   },
   text: {
     marginLeft: 20,
-    fontSize: Typography.FONT_SIZE_20,
+    fontSize: Typography.FONT_SIZE_24,
   },
   rightSide: {
     justifyContent: 'center',

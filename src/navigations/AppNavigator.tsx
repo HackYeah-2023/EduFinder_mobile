@@ -8,7 +8,7 @@ const Drawer = createDrawerNavigator();
 const AppNavigator = () => {
   return (
     <Drawer.Navigator
-      initialRouteName={AppRoutes.Settings}
+      initialRouteName={AppRoutes.SchoolsSearch}
       screenOptions={() => ({
         headerShown: false,
       })}>

@@ -2,7 +2,7 @@ import { CompositeNavigationProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button, Select } from '_atoms';
 import { Wrapper } from '_screens';
-import { useGetOptionsQuery } from '_services/schools/schools';
+import { options, regionsConverted } from '_services/schools/options-data';
 import { Colors, Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import { Formik } from 'formik';
@@ -25,9 +25,6 @@ interface FormValues {
 }
 
 const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
-  const { data, isLoading } = useGetOptionsQuery();
-  console.log(data);
-
   const loginSchema = Yup.object().shape({
     region: Yup.string().required(),
     city: Yup.string().required(),
@@ -35,6 +32,10 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
     extendedSubject: Yup.string().required(),
     profile: Yup.string().required(),
   });
+  const regionsArray = Object.entries(regionsConverted).map(([key, value]) => ({
+    label: value,
+    value: key,
+  }));
 
   const initialValues: FormValues = {
     region: '',
@@ -43,18 +44,10 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
     extendedSubject: '',
     profile: '',
   };
-
+  console.log(regionsArray);
   const submit = (values: FormValues) => {
     navigation.navigate(AppRoutes.Home, values);
   };
-
-  if (isLoading) {
-    return (
-      <View>
-        <Text>{'Loading...'}</Text>
-      </View>
-    );
-  }
 
   return (
     <Wrapper>
@@ -71,17 +64,14 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
             <View style={s.form}>
               <Select
                 value={values.region}
-                items={data?.regions.map((item: any) => ({
-                  label: item,
-                  value: item,
-                }))}
+                items={regionsArray}
                 placeholder={{ label: 'Województwo', value: '' }}
                 onSubmit={handleChange('region')}
                 error={touched.region ? errors.region : undefined}
               />
               <Select
                 value={values.city}
-                items={data?.cities.map((item: any) => ({
+                items={options?.cities.map((item: any) => ({
                   label: item,
                   value: item,
                 }))}
@@ -91,7 +81,7 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
               />
               <Select
                 value={values.profile}
-                items={data?.profiles.map((item: any) => ({
+                items={options?.profiles.map((item: any) => ({
                   label: item,
                   value: item,
                 }))}
@@ -101,7 +91,7 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
               />
               <Select
                 value={values.extendedSubject}
-                items={data?.extended_subjects.map((item: any) => ({
+                items={options?.extended_subjects.map((item: any) => ({
                   label: item,
                   value: item,
                 }))}
@@ -113,7 +103,7 @@ const SchoolsSearch = ({ navigation }: SchoolsSearchProps) => {
               />
               <Select
                 value={values.foreignLanguages}
-                items={data?.foreign_languages.map((item: any) => ({
+                items={options?.foreign_languages.map((item: any) => ({
                   label: item,
                   value: item,
                 }))}

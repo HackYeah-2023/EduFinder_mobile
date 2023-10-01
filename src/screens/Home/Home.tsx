@@ -3,6 +3,7 @@ import { RouteProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Item, SearchBar } from '_atoms';
 import { Wrapper } from '_screens';
+import { getAllSchools } from '_services/schools/schools.methods';
 import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
 import React from 'react';
@@ -20,16 +21,47 @@ export interface HomeProps {
   route: RouteProp<AppNavigatorParamsList, AppRoutes.Home>;
 }
 
+interface dataInterface {
+  id: number;
+  name: string;
+  region: string;
+  county: string;
+  commune: string;
+  city: string;
+  street: string;
+  number: string;
+  zipCode: string;
+  page: string;
+  type: string;
+  departments: number;
+  mail: string;
+  phone: string;
+  foreign_languages: string;
+  classes: string;
+  extended_subjects: string;
+  likes: number;
+}
+
 const Home = ({ navigation, route }: HomeProps) => {
   const { colors } = useTheme();
+
   const {
     params: { region, city, foreignLanguages, extendedSubject, profile },
   } = route;
 
-  const data = [
-    { label: 'test', value: 'test' },
-    { label: 'test', value: 'test' },
-  ];
+  const data = getAllSchools({
+    name: 'Liceum',
+    region,
+    city,
+    extendedSubject: [extendedSubject],
+    languages: [foreignLanguages],
+    profile: [profile],
+  });
+
+  const newData: dataInterface[] = data.map(item => {
+    const likes = Math.floor(Math.random() * 1000);
+    return { ...item, likes };
+  });
 
   return (
     <Wrapper>
@@ -59,17 +91,16 @@ const Home = ({ navigation, route }: HomeProps) => {
           </View>
         </View>
         <FlatList
-          data={data}
+          data={newData}
           showsVerticalScrollIndicator={false}
           style={s.flatList}
           renderItem={({ item }) => (
             <Item
-              schoolName={item.schoolName}
+              schoolName={item.name}
               city={item.city}
               street={item.street}
               number={item.number}
               likes={item.likes}
-              isLiked={item.isLiked}
             />
           )}
         />
