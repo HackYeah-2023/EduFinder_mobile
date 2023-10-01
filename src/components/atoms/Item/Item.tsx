@@ -24,10 +24,10 @@ const Item = ({ schoolName, city, street, number, likes }: ItemProps) => {
         { borderColor: colors.card, backgroundColor: `${colors.card}1A` },
       ]}>
       <View style={s.leftSide}>
-        <Text numberOfLines={2} style={s.schoolName}>
+        <Text numberOfLines={3} style={s.schoolName}>
           {schoolName}
         </Text>
-        <Text numberOfLines={2} style={s.text}>
+        <Text numberOfLines={3} style={s.text}>
           {city + ' ' + street + ' ' + number}
         </Text>
       </View>
@@ -62,11 +62,11 @@ const s = StyleSheet.create({
   schoolName: {
     marginLeft: 20,
     fontSize: Typography.FONT_SIZE_20,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   text: {
     marginLeft: 20,
-    fontSize: Typography.FONT_SIZE_24,
+    fontSize: Typography.FONT_SIZE_14,
   },
   rightSide: {
     justifyContent: 'center',

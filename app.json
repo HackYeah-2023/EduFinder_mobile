@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "EduApp",
-    "slug": "EduApp",
+    "name": "EduFinder",
+    "slug": "EduFinder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
+    "sdkVersion": "48.0.0",
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",

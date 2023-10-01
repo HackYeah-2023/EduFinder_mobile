@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View,
   useWindowDimensions,
 } from 'react-native';
 
@@ -57,9 +56,9 @@ const SearchBar = ({ placeholder, onSearch, autoFocus }: Props) => {
         returnKeyType={'search'}
         autoFocus={autoFocus !== undefined}
       />
-      <View style={{ marginRight: 5 }}>
+      <TouchableOpacity style={{ marginRight: 5 }} onPress={search}>
         <FontAwesome name="search" size={25} color={colors.text} />
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };

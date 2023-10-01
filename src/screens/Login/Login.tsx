@@ -143,15 +143,6 @@ const Login = ({ navigation, route }: LoginProps) => {
                     />
 
                     <Button
-                      label={t('Nie pamiętam hasła')}
-                      style={{
-                        backgroundColor: Colors.TRANSPARENT,
-                        borderColor: Colors.TRANSPARENT,
-                      }}
-                      onPress={() => console.log('forgot password')}
-                    />
-
-                    <Button
                       label={t('Login')}
                       style={s.loginButton}
                       onPress={handleSubmit}
@@ -174,7 +165,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   form: {
-    marginTop: 90,
+    marginTop: 40,
     width: '90%',
     alignSelf: 'center',
   },
@@ -212,6 +203,7 @@ const s = StyleSheet.create({
     height: 4,
     width: Dimensions.get('window').width / 3.5,
     backgroundColor: Colors.LIGHTBLUE,
+    marginTop: 30,
     borderRadius: 50,
   },
 });

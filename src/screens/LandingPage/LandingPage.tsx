@@ -42,15 +42,6 @@ const LandingPage = ({ navigation }: LandingPageProps) => {
               style={s.loginButton}
               onPress={() => navigation.navigate(AuthRoutes.Register)}
             />
-            <Button
-              label={t('continueAsGuest')}
-              style={{
-                marginTop: 60,
-                backgroundColor: Colors.TRANSPARENT,
-                borderColor: Colors.TRANSPARENT,
-              }}
-              onPress={() => navigation.navigate(AppRoutes.SchoolsSearch)}
-            />
           </View>
         </View>
       </View>

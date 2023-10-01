@@ -87,7 +87,7 @@ const Calculator = () => {
             size={25}
             color="black"
           />
-          <Text style={[s.headerText, { color: Colors.GREEN }]}>EduApp</Text>
+          <Text style={[s.headerText, { color: Colors.GREEN }]}>EduFinder</Text>
           <Image
             style={{ width: 105, height: 105 }}
             source={require('_assets/glogo.png')}
@@ -105,7 +105,9 @@ const Calculator = () => {
             handleSubmit,
             touched,
           }) => (
-            <ScrollView style={s.container}>
+            <ScrollView
+              style={s.container}
+              showsVerticalScrollIndicator={false}>
               <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={s.head}>{t('Kalkulator')!}</Text>
                 <View style={s.dash}></View>
@@ -324,6 +326,7 @@ const Calculator = () => {
                     }}>
                     <Button
                       style={{
+                        flex: 1,
                         backgroundColor: 'transparent',
                         borderColor: Colors.GREEN,
                       }}
@@ -335,6 +338,7 @@ const Calculator = () => {
                     <View style={{ marginHorizontal: 10 }} />
                     <Button
                       style={{
+                        flex: 1,
                         backgroundColor: 'transparent',
                         borderColor: Colors.GREEN,
                       }}
@@ -369,6 +373,7 @@ const Calculator = () => {
                     }}>
                     <Button
                       style={{
+                        flex: 1,
                         backgroundColor: 'transparent',
                         borderColor: Colors.GREEN,
                       }}
@@ -380,6 +385,7 @@ const Calculator = () => {
                     <View style={{ marginHorizontal: 10 }} />
                     <Button
                       style={{
+                        flex: 1,
                         backgroundColor: 'transparent',
                         borderColor: Colors.GREEN,
                       }}

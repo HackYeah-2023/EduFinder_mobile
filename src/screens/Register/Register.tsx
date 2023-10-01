@@ -142,8 +142,6 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       autoCapitalize="none"
                       placeholder={t('password')!}
                       textContentType="password"
-                      returnKeyType={'go'}
-                      returnKeyLabel="Log in"
                       ref={passwordRef}
                     />
                     <Input
@@ -155,7 +153,7 @@ const Register = ({ navigation, route }: RegisterProps) => {
                       placeholder={t('repassword')!}
                       autoCapitalize="none"
                       textContentType="password"
-                      secureTextEntry={true}
+                      passwordInput
                       ref={repasswordRef}
                     />
 
@@ -182,7 +180,7 @@ const s = StyleSheet.create({
     flex: 1,
   },
   form: {
-    marginTop: 90,
+    marginTop: 50,
     width: '90%',
     alignSelf: 'center',
   },
@@ -212,7 +210,6 @@ const s = StyleSheet.create({
   },
   bottomButtonText: {
     fontSize: Typography.FONT_SIZE_12,
-
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
@@ -255,6 +252,6 @@ const s = StyleSheet.create({
     backgroundColor: Colors.LIGHTBLUE,
     borderRadius: 50,
     flex: 1,
-    top: 270,
+    top: 240,
   },
 });

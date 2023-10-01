@@ -6,7 +6,7 @@ import { Wrapper } from '_screens';
 import { getAllSchools } from '_services/schools/schools.methods';
 import { Typography } from '_styles';
 import { AppNavigatorParamsList, AppRoutes } from '_types';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlatList,
   Image,
@@ -44,19 +44,27 @@ interface dataInterface {
 
 const Home = ({ navigation, route }: HomeProps) => {
   const { colors } = useTheme();
+  const [query, setQuery] = useState<string>('');
+
+  if (!route.params) {
+    navigation.navigate(AppRoutes.SchoolsSearch);
+    return;
+  }
 
   const {
     params: { region, city, foreignLanguages, extendedSubject, profile },
   } = route;
 
   const data = getAllSchools({
-    name: 'Liceum',
+    name: query ? query : 'Liceum',
     region,
     city,
-    extendedSubject: [extendedSubject],
-    languages: [foreignLanguages],
-    profile: [profile],
+    extendedSubject: [extendedSubject || ''],
+    languages: [foreignLanguages || ''],
+    profile: [profile || ''],
   });
+
+  console.log(data);
 
   const newData: dataInterface[] = data.map(item => {
     const likes = Math.floor(Math.random() * 1000);
@@ -75,20 +83,19 @@ const Home = ({ navigation, route }: HomeProps) => {
               color="black"
             />
           </TouchableOpacity>
-          <Text style={[s.headerText, { color: colors.card }]}>EDUAPP</Text>
+          <Text style={[s.headerText, { color: colors.card }]}>EduFinder</Text>
           <Image
             style={{ width: 105, height: 105 }}
             source={require('_assets/logo.png')}
           />
         </View>
         <View style={s.searchContainer}>
-          <SearchBar
-            placeholder={'Szukaj'}
-            onSearch={() => console.log('test')}
-          />
-          <View style={s.iconContainer}>
+          <SearchBar placeholder={'Szukaj'} onSearch={text => setQuery(text)} />
+          <TouchableOpacity
+            style={s.iconContainer}
+            onPress={() => navigation.navigate(AppRoutes.SchoolsSearch)}>
             <Feather name="list" size={24} color="black" />
-          </View>
+          </TouchableOpacity>
         </View>
         <FlatList
           data={newData}

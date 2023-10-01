@@ -1,6 +1,7 @@
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { AntDesign, Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { CompositeNavigationProp, useTheme } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { De, En, Es } from '_assets';
 import { ExtendedSubject } from '_atoms';
 import { Wrapper } from '_screens';
 import { Colors, Typography } from '_styles';
@@ -14,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import MapView from 'react-native-maps';
 
 export interface DetailsProps {
   navigation: CompositeNavigationProp<
@@ -37,7 +39,7 @@ const Details = ({ navigation }: DetailsProps) => {
             size={25}
             color="black"
           />
-          <Text style={[s.headerText, { color: colors.card }]}>EDUAPP</Text>
+          <Text style={[s.headerText, { color: colors.card }]}>EduFinder</Text>
           <Image
             style={{ width: 105, height: 105 }}
             source={require('_assets/logo.png')}
@@ -49,7 +51,7 @@ const Details = ({ navigation }: DetailsProps) => {
 
         <View style={s.schoolName}>
           <Text style={{ fontSize: Typography.FONT_SIZE_30 }}>
-            {'Nazwa szkoły'}
+            {'Zespół Szkół Elektrycznych nr 1'}
           </Text>
           <View style={s.likeContainer}>
             <TouchableOpacity
@@ -67,26 +69,92 @@ const Details = ({ navigation }: DetailsProps) => {
           </View>
         </View>
 
-        <ScrollView style={s.about}>
+        <ScrollView style={s.about} showsVerticalScrollIndicator={false}>
           <View style={s.schoolInfo}>
             <Text style={{ fontSize: Typography.FONT_SIZE_20, opacity: 0.5 }}>
-              {'Miasto, ulica, numer'}
+              {'Kraków, Kamińskiego 49'}
             </Text>
             <View style={s.flags}>
-              <Text style={s.singleFlag}>{'flag1'}</Text>
-              <Text style={s.singleFlag}>{'flag2'}</Text>
-              <Text style={s.singleFlag}>{'flag3'}</Text>
+              <Es width={40} height={30} />
+              <En width={40} height={30} />
+              <De width={40} height={30} />
             </View>
           </View>
           <Text style={s.aboutText}>
             {'Absolwenci tej szkoły mają o 98% lepsze wyniki maturalne'}
           </Text>
-
+          <View style={s.mapContainer}>
+            <MapView
+              style={s.map}
+              initialRegion={{
+                latitude: 50.046652,
+                longitude: 19.93425,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            />
+          </View>
           <ExtendedSubject
-            label={'Mat-Inf'}
+            label={'Programista'}
             text={'P.rozszerzony: matematyka, informatyka'}
             label_info={'Kim możesz zostać?'}
             text_info={'Programista\nAutomatyk'}
+          />
+          <ExtendedSubject
+            label={'Automatyk'}
+            text={'P.rozszerzony: fizyka, matematyka'}
+            label_info={'Kim możesz zostać?'}
+            text_info={'Mechatronik\nAutomatyk'}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <FontAwesome5 name="robot" size={30} color="black" />
+            <View
+              style={{
+                padding: 8,
+                backgroundColor: `${Colors.BLUE}77`,
+                borderTopLeftRadius: 10,
+                borderBottomLeftRadius: 10,
+                borderTopRightRadius: 25,
+                borderBottomRightRadius: 25,
+                marginLeft: 15,
+                marginVertical: 20,
+              }}>
+              <Text
+                style={{
+                  fontSize: Typography.FONT_SIZE_22,
+                  textAlign: 'center',
+                  padding: 5,
+                }}>
+                {'Czy masz więcej pytań?'}
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              padding: 10,
+              backgroundColor: Colors.BLUE,
+              marginTop: 5,
+              height: 55,
+              marginBottom: 20,
+              width: '75%',
+            }}>
+            <Text
+              style={{
+                fontSize: Typography.FONT_SIZE_22,
+                textAlign: 'center',
+                padding: 5,
+              }}></Text>
+          </View>
+          <Ionicons
+            style={{ position: 'absolute', right: 20, bottom: 22 }}
+            name="send"
+            size={40}
+            color={Colors.BLUE}
           />
         </ScrollView>
       </View>
@@ -144,6 +212,8 @@ const s = StyleSheet.create({
   },
   flags: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '50%',
     marginTop: 10,
   },
   singleFlag: {
@@ -151,12 +221,22 @@ const s = StyleSheet.create({
   },
   about: {
     marginHorizontal: 25,
-    marginTop: 25,
+    marginTop: 5,
   },
   aboutText: {
     fontSize: Typography.FONT_SIZE_20,
     color: Colors.GREEN,
     textAlign: 'center',
     marginTop: 20,
+  },
+  mapContainer: {
+    width: '100%',
+    height: 200,
+    backgroundColor: 'red',
+    marginTop: 20,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
   },
 });
