@@ -5,3 +5,4 @@ export { default as Item } from './Item/Item';
 export { default as Result } from './Result/Result';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Select } from './Select/Select';
+export { default as TextView } from './TextView/TextView';
